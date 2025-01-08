@@ -1,39 +1,200 @@
 # Spoor
 
-TODO: Delete this and the text below, and describe your gem
+[![Gem Version](https://badge.fury.io/rb/spoor.svg)](https://badge.fury.io/rb/spoor)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/spoor`. To experiment with that code, run `bin/console` for an interactive prompt.
+Spoor is a **Docker-based development environment** for Ruby on Rails applications, inspired by Laravel Sail. It simplifies setting up and managing a Dockerized development environment, allowing you to focus on building your Rails application.
+
+---
+
+## Prerequisites
+
+Before using Spoor, ensure that **Docker** is installed and running on your system. You can download Docker from [https://www.docker.com/](https://www.docker.com/).
+
+---
 
 ## Installation
 
-TODO: Replace `UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG` with your gem name right after releasing it to RubyGems.org. Please do not do it earlier due to security reasons. Alternatively, replace this section with instructions to install your gem from git if you don't plan to release to RubyGems.org.
+Add the gem to your Rails application's `Gemfile`:
 
-Install the gem and add to the application's Gemfile by executing:
+```ruby
+gem "spoor"
+```
 
-    $ bundle add UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+Then run:
 
-If bundler is not being used to manage dependencies, install the gem by executing:
+```bash
+bundle install
+```
 
-    $ gem install UPDATE_WITH_YOUR_GEM_NAME_IMMEDIATELY_AFTER_RELEASE_TO_RUBYGEMS_ORG
+After installing the gem, set up Spoor in your project:
+
+```bash
+spoor install
+```
+
+This will generate the necessary `docker-compose.yml` and `.env` files. If your project already has a `Dockerfile`, it will not be overwritten unless you use the `--force-dockerfile` flag:
+
+```bash
+spoor install --force-dockerfile
+```
+
+---
 
 ## Usage
 
-TODO: Write usage instructions here
+### Start the Environment
 
-## Development
+To start the Spoor environment, run:
 
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
+```bash
+spoor up
+```
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and the created tag, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+This will start the Docker containers in the background.
+
+### Stop the Environment
+
+To stop the environment, run:
+
+```bash
+spoor down
+```
+
+### Run Rails Commands
+
+You can run Rails commands inside the Docker container using:
+
+```bash
+spoor rails <command>
+```
+
+For example:
+
+```bash
+spoor rails console
+spoor rails db:migrate
+```
+
+### Run Bundler Commands
+
+To run Bundler commands, use:
+
+```bash
+spoor bundle <command>
+```
+
+For example:
+
+```bash
+spoor bundle install
+```
+
+### Access the Database
+
+To start a PostgreSQL CLI session, run:
+
+```bash
+spoor psql
+```
+
+### Access Redis
+
+To start a Redis CLI session, run:
+
+```bash
+spoor redis
+```
+
+### Start a Shell in the App Container
+
+To start a Bash shell in the app container, run:
+
+```bash
+spoor bash
+```
+
+---
+
+## Configuration
+
+### Environment Variables
+
+The `.env` file generated during installation contains the following environment variables:
+
+```env
+APP_PORT=3000
+FORWARD_DB_PORT=5432
+FORWARD_REDIS_PORT=6379
+WWWUSER=1000
+WWWGROUP=1000
+```
+
+You can customize these values to fit your project's needs.
+
+### Docker Compose
+
+The `docker-compose.yml` file is pre-configured with the following services:
+
+- **web**: The Rails application.
+- **db**: PostgreSQL database.
+- **redis**: Redis for caching or background jobs.
+
+You can modify this file to add or remove services as needed.
+
+---
+
+## Example Workflow
+
+1. Install Spoor:
+
+   ```bash
+   spoor install
+   ```
+
+2. Start the environment:
+
+   ```bash
+   spoor up
+   ```
+
+3. Run database migrations:
+
+   ```bash
+   spoor rails db:migrate
+   ```
+
+4. Access the Rails console:
+
+   ```bash
+   spoor rails console
+   ```
+
+5. Stop the environment when done:
+
+   ```bash
+   spoor down
+   ```
+
+---
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/spoor. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [code of conduct](https://github.com/[USERNAME]/spoor/blob/master/CODE_OF_CONDUCT.md).
+Contributions are welcome! If you'd like to contribute to Spoor, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Commit your changes.
+4. Submit a pull request.
+
+---
 
 ## License
 
-The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
+Spoor is open-source software licensed under the [MIT License](https://opensource.org/licenses/MIT).
 
-## Code of Conduct
+---
 
-Everyone interacting in the Spoor project's codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/[USERNAME]/spoor/blob/master/CODE_OF_CONDUCT.md).
+## Support
+
+If you encounter any issues or have questions, please [open an issue](https://github.com/mohammed-bageri/spoor/issues) on GitHub.
