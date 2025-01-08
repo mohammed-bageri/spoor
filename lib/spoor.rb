@@ -35,7 +35,7 @@ module Spoor
     # Check for Ruby version in Gemfile
     if File.exist?("Gemfile")
       gemfile_content = File.read("Gemfile")
-      if match = gemfile_content.match(/ruby ['"]([^'"]+)['"]/)
+      if (match = gemfile_content.match(/ruby ['"]([^'"]+)['"]/))
         return match[1]
       end
     end

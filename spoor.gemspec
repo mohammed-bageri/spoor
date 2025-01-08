@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # Load the version file
 require_relative "lib/spoor/version"
 
@@ -8,9 +10,10 @@ Gem::Specification.new do |spec|
   spec.email         = ["mohammed.bajiri.00@gmail.com"]
 
   spec.summary       = "A Docker-based development environment for Rails, inspired by Laravel Sail."
-  spec.description   = "Spoor simplifies setting up and managing a Dockerized development environment for Ruby on Rails applications."
+  spec.description   = "Spoor simplifies setting up and managing a Dockerized development environment for Ruby on Rails applications." # rubocop:disable Layout/LineLength
   spec.homepage      = "https://github.com/mohammed-bageri/spoor"
   spec.license       = "MIT"
+  spec.required_ruby_version = ">= 3.0.0"
 
   # Include only the necessary files
   spec.files         = Dir["lib/**/*", "exe/**/*", "templates/**/*", "README.md", "LICENSE.txt", "CHANGELOG.md",
