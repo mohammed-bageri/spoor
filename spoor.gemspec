@@ -28,7 +28,6 @@ Gem::Specification.new do |spec|
   spec.metadata["allowed_push_host"] = "https://rubygems.org" # Replace with your gem server URL
 
   # Runtime dependencies
-  spec.add_dependency "dotenv", "~> 2.7"
   spec.add_dependency "thor", "~> 1.2"
 
   # Development dependencies
