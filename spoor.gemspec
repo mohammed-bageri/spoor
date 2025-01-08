@@ -13,7 +13,8 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   # Include only the necessary files
-  spec.files         = Dir["lib/**/*", "exe/**/*", "templates/**/*", "README.md", "LICENSE.txt", "CHANGELOG.md"]
+  spec.files         = Dir["lib/**/*", "exe/**/*", "templates/**/*", "README.md", "LICENSE.txt", "CHANGELOG.md",
+                           "lib/spoor/templates/.env.example"]
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
