@@ -55,7 +55,7 @@ module Spoor
 
     # Copy .env
     FileUtils.cp(
-      File.join(__dir__, "spoor", "templates", ".env"),
+      File.join(__dir__, "spoor", "templates", ".env.example"),
       ".env"
     )
 

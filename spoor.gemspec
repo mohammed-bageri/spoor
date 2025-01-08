@@ -1,3 +1,6 @@
+# Load the version file
+require_relative "lib/spoor/version"
+
 Gem::Specification.new do |spec|
   spec.name          = "spoor"
   spec.version       = Spoor::VERSION
@@ -18,7 +21,7 @@ Gem::Specification.new do |spec|
   # Metadata
   spec.metadata["source_code_uri"] = "https://github.com/mohammed-bageri/spoor"
   spec.metadata["changelog_uri"] = "https://github.com/mohammed-bageri/spoor/blob/main/CHANGELOG.md"
-  spec.metadata["allowed_push_host"] = "https://rubygems.org"
+  spec.metadata["allowed_push_host"] = "https://rubygems.org" # Replace with your gem server URL
 
   # Runtime dependencies
   spec.add_dependency "dotenv", "~> 2.7"
