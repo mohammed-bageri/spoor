@@ -2,10 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Spoor::Commands::Install do # rubocop:disable Metrics/BlockLength
+RSpec.describe Spoor::Commands::Install do
   let(:cli) { described_class.new }
 
-  describe "#install" do # rubocop:disable Metrics/BlockLength
+  describe "#install" do
     let(:temp_dir) { Dir.mktmpdir }
 
     before do

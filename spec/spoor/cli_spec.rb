@@ -2,10 +2,10 @@
 
 require "spec_helper"
 
-RSpec.describe Spoor::CLI do
+RSpec.describe Spoor::CLI do # rubocop:disable Metrics/BlockLength
   let(:cli) { described_class.new }
 
-  describe "command registration" do
+  describe "command registration" do # rubocop:disable Metrics/BlockLength
     it "registers the 'install' command" do
       expect(cli.class.commands.keys).to include("install")
     end

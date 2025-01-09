@@ -10,7 +10,7 @@ module Spoor
       def up(*args)
         Spoor::Tasks::Docker.check_docker
         say "Starting Spoor..."
-        system("docker-compose up -d")
+        system("docker-compose up #{args.join(" ")}")
       end
     end
   end
